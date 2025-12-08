@@ -18,5 +18,10 @@
   "Home": "Home",
   "Complex Numbers": "Numeri Complessi",
   "Interactive visualizations for mathematical concepts": "Visualizzazioni interattive per concetti matematici",
-  "Introducion to complex numbers and their applications.": "Introduzione ai numeri complessi e loro applicazioni."
+  "Introduction to complex numbers and their applications.": "Introduzione ai numeri complessi e loro applicazioni.",
+  "The problem": "Il problema",
+  "Playground": "Mettiti in gioco",
+  "complex-numbers-problem-1": "Sei un ingegnere e sei stato incaricato dalla AstroSatellites & Co. per lo studio di un'antenna alta 2m che deve ruotare per puntare sempre allo stesso satellite. Tra i vari calcoli che devi effettuare, sei giustamente interessato a sapere la posizione finale dell'antenna dopo una determinata rotazione. Ci viene subito in mente di imbarcarci nei nostri calcoli con la matrice di rotazione seguente:",
+  "complex-numbers-problem-2": "Funziona, ma se ci viene richiesto di aggiungere inclinazioni o altri assi di rotazione il lavoro diventa un'impresa più complessa. Dunque troviamo una soluzione molto più semplice e immediata: i numeri complessi ci permettono di identificare quanto un punto si trova spostato sull'asse delle X (parte reale) e sull'asse delle Y (parte immaginaria), ma anche di sapere la lunghezza di un determinato vettore (ρ) e il suo angolo di rotazione (θ). Quindi pensiamo alla nostra antenna, vista dall'alto, come il numero complesso:",
+  "complex-numbers-problem-3": "Fatto questo, siamo ora in grado di calcolare tutte le rotazioni note e possiamo considerare il lavoro svolto con successo!"
 }

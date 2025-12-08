@@ -1,3 +1,4 @@
+import LatexRenderer from "@/components/personal/latex-renderer";
 import { complex } from "mathjs";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -136,145 +137,189 @@ export const ComplexNumberSolver: React.FC = () => {
     setPolarEq(c);
   }, [polar]);
 
+  const rotationMatrix = `
+  \\begin{pmatrix}
+  \\cos\\theta & -\\sin\\theta \\\\
+  \\sin\\theta & \\cos\\theta
+  \\end{pmatrix}
+  \\begin{pmatrix}
+  2 \\\\
+  0
+  \\end{pmatrix}`;
+
+  const antennaComplexNumber = `
+  \\begin{aligned}
+  z &= 2(\\cos \\theta + i \\sin \\theta)
+  \\end{aligned}`;
+
+  const antennaAllRotations = `
+  \\begin{aligned}
+  \\theta &= 0^\\circ: & z &= 2(\\cos 0 + i \\sin 0) = 2 + 0i \\\\ \\\\
+  \\theta &= 30^\\circ: & z &= 2(\\cos 30^\\circ + i \\sin 30^\\circ) = \\sqrt{3} + i \\\\ \\\\
+  \\theta &= 60^\\circ: & z &= 2(\\cos 60^\\circ + i \\sin 60^\\circ) = 1 + i \\sqrt{3} \\\\ \\\\
+  \\theta &= 90^\\circ: & z &= 2(\\cos 90^\\circ + i \\sin 90^\\circ) = 0 + 2i \\\\ \\\\
+  \\theta &= 120^\\circ: & z &= 2(\\cos 120^\\circ + i \\sin 120^\\circ) = -1 + i \\sqrt{3} \\\\ \\\\
+  \\theta &= 150^\\circ: & z &= 2(\\cos 150^\\circ + i \\sin 150^\\circ) = -\\sqrt{3} + i \\\\ \\\\
+  \\theta &= 180^\\circ: & z &= 2(\\cos 180^\\circ + i \\sin 180^\\circ) = -2 + 0i \\\\ \\\\
+  \\theta &= \\dots & z &= \\dots \\\\
+  \\end{aligned}
+  `;
+
   return (
-    <Row justify="center" className="px-6">
-      <Col className="min-w-1/6">
-        <Container cols={2} hasBackground>
-          <Col span={2} gap={1}>
-            <Text size="xl" variant="semibold">
-              {t("Rectangular Form")}
-            </Text>
-            <Text variant="italic">{rectEq}</Text>
-          </Col>
-
-          <Data
-            id={"re"}
-            type={"number"}
-            value={rect.re}
-            onChange={(e) => {
-              setLastEdited("rect");
-              handleInputChange(
-                e.target.value,
-                (val) => setRect((prev) => ({ ...prev, re: val })),
-                -1e6,
-                1e6
-              );
-            }}
-            label={t("Re")}
-            min={-1e6}
-            max={1e6}
-          />
-
-          <Data
-            id={"im"}
-            type={"number"}
-            value={rect.im}
-            onChange={(e) => {
-              setLastEdited("rect");
-              handleInputChange(
-                e.target.value,
-                (val) => setRect((prev) => ({ ...prev, im: val })),
-                -1e6,
-                1e6
-              );
-            }}
-            label={t("Im")}
-            min={-1e6}
-            max={1e6}
-          />
+    <Container>
+      <Row justify="center">
+        <Container gap={4} hasBackground className="max-w-1/2">
+          <Text isTitle>{t("The problem")}</Text>
+          <Text lineHeight="loose">{t("complex-numbers-problem-1")}</Text>
+          <LatexRenderer latex={rotationMatrix} />
+          <Text lineHeight="loose">{t("complex-numbers-problem-2")}</Text>
+          <LatexRenderer latex={antennaComplexNumber} />
+          <Text lineHeight="loose">{t("complex-numbers-problem-3")}</Text>
+          <LatexRenderer latex={antennaAllRotations} />
         </Container>
+      </Row>
+      <Row justify="center" className="px-6">
+        <Text isTitle>{t("Playground")}</Text>
+      </Row>
+      <Row justify="center">
+        <Col className="min-w-1/6">
+          <Container cols={2} hasBackground>
+            <Col span={2} gap={1}>
+              <Text size="xl" variant="semibold">
+                {t("Rectangular Form")}
+              </Text>
+              <Text italic>{rectEq}</Text>
+            </Col>
 
-        <Container cols={2} hasBackground>
-          <Col span={2} gap={1}>
-            <Text size="xl" variant="semibold">
-              {t("Polar Form")}
-            </Text>
-            <Text variant="italic">{polarEq}</Text>
-          </Col>
+            <Data
+              id={"re"}
+              type={"number"}
+              value={rect.re}
+              onChange={(e) => {
+                setLastEdited("rect");
+                handleInputChange(
+                  e.target.value,
+                  (val) => setRect((prev) => ({ ...prev, re: val })),
+                  -1e6,
+                  1e6
+                );
+              }}
+              label={t("Re")}
+              min={-1e6}
+              max={1e6}
+            />
 
-          <Data
-            id={"rho"}
-            type={"number"}
-            value={polar.rho}
-            onChange={(e) => {
-              setLastEdited("polar");
-              handleInputChange(
-                e.target.value,
-                (val) => setPolar((prev) => ({ ...prev, rho: val })),
-                0,
-                1e6
-              );
-            }}
-            label={t("rho")}
-            min={0}
-            max={1e6}
-          />
+            <Data
+              id={"im"}
+              type={"number"}
+              value={rect.im}
+              onChange={(e) => {
+                setLastEdited("rect");
+                handleInputChange(
+                  e.target.value,
+                  (val) => setRect((prev) => ({ ...prev, im: val })),
+                  -1e6,
+                  1e6
+                );
+              }}
+              label={t("Im")}
+              min={-1e6}
+              max={1e6}
+            />
+          </Container>
 
-          <Data
-            id={"theta"}
-            type={"number"}
-            value={polar.theta}
-            onChange={(e) => {
-              setLastEdited("polar");
-              handleInputChange(
-                e.target.value,
-                (val) => setPolar((prev) => ({ ...prev, theta: val })),
-                -1e6,
-                1e6
-              );
-            }}
-            label={t("Theta")}
-            min={-1e6}
-            max={1e6}
-          />
-        </Container>
+          <Container cols={2} hasBackground>
+            <Col span={2} gap={1}>
+              <Text size="xl" variant="semibold">
+                {t("Polar Form")}
+              </Text>
+              <Text italic>{polarEq}</Text>
+            </Col>
 
-        <Container hasBackground>
-          <Data
-            id={"apply-operation"}
-            type={"checkbox"}
-            value={applyOperation}
-            onCheckedChange={(val) => setApplyOperation(!!val)}
-            label={t("Apply Operation")}
-          />
+            <Data
+              id={"rho"}
+              type={"number"}
+              value={polar.rho}
+              onChange={(e) => {
+                setLastEdited("polar");
+                handleInputChange(
+                  e.target.value,
+                  (val) => setPolar((prev) => ({ ...prev, rho: val })),
+                  0,
+                  1e6
+                );
+              }}
+              label={t("rho")}
+              min={0}
+              max={1e6}
+            />
 
-          <Selector
-            label={t("Operation")}
-            value={operation}
-            placeholder={t("Select Operation")}
-            onValueChange={(val) => setOperation(val as Operation)}
-            items={[
-              {
-                value: "pow",
-                label: t("Power"),
-              },
-              {
-                value: "sqrt",
-                label: t("Nth Root"),
-              },
-            ]}
-          />
+            <Data
+              id={"theta"}
+              type={"number"}
+              value={polar.theta}
+              onChange={(e) => {
+                setLastEdited("polar");
+                handleInputChange(
+                  e.target.value,
+                  (val) => setPolar((prev) => ({ ...prev, theta: val })),
+                  -1e6,
+                  1e6
+                );
+              }}
+              label={t("Theta")}
+              min={-1e6}
+              max={1e6}
+            />
+          </Container>
 
-          <Data
-            id={"n"}
-            type={"number"}
-            value={nValue}
-            onChange={(e) =>
-              handleInputChange(e.target.value, setNValue, 1, 20)
-            }
-            label={"n"}
-            min={1}
-            max={20}
-          />
-        </Container>
-      </Col>
+          <Container hasBackground>
+            <Data
+              id={"apply-operation"}
+              type={"checkbox"}
+              value={applyOperation}
+              onCheckedChange={(val) => setApplyOperation(!!val)}
+              label={t("Apply Operation")}
+            />
 
-      <PolarComplexChart
-        rho={polar.rho === "" ? 0 : Number(polar.rho)}
-        theta={polar.theta === "" ? 0 : Number(polar.theta)}
-        extraPoints={resultPoints}
-        className="w-xs sm:w-2xl"
-      />
-    </Row>
+            <Selector
+              label={t("Operation")}
+              value={operation}
+              placeholder={t("Select Operation")}
+              onValueChange={(val) => setOperation(val as Operation)}
+              items={[
+                {
+                  value: "pow",
+                  label: t("Power"),
+                },
+                {
+                  value: "sqrt",
+                  label: t("Nth Root"),
+                },
+              ]}
+            />
+
+            <Data
+              id={"n"}
+              type={"number"}
+              value={nValue}
+              onChange={(e) =>
+                handleInputChange(e.target.value, setNValue, 1, 20)
+              }
+              label={"n"}
+              min={1}
+              max={20}
+            />
+          </Container>
+        </Col>
+
+        <PolarComplexChart
+          rho={polar.rho === "" ? 0 : Number(polar.rho)}
+          theta={polar.theta === "" ? 0 : Number(polar.theta)}
+          extraPoints={resultPoints}
+          className="w-xs sm:w-2xl"
+        />
+      </Row>
+    </Container>
   );
 };

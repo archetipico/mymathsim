@@ -71,7 +71,7 @@ export const Container: React.FC<ContainerProps> = ({
     return (
       <div
         className={cn(
-          "grid p-4 rounded-2xl w-full",
+          "grid px-6 py-4 rounded-2xl w-full",
           hasBackground ? "shadow bg-white" : "",
           colMap[cols],
           gapMap[gap],
@@ -89,7 +89,7 @@ export const Container: React.FC<ContainerProps> = ({
   return (
     <div
       className={cn(
-        "flex flex-wrap p-4 rounded-2xl",
+        "flex flex-wrap px-6 py-4 rounded-2xl",
         hasBackground ? "shadow bg-white" : "",
         gapMap[gap],
         alignMap[align],

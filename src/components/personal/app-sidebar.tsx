@@ -33,7 +33,7 @@ export const websiteItems = [
   },
   {
     title: "Complex Numbers",
-    description: "Introducion to complex numbers and their applications.",
+    description: "Introduction to complex numbers and their applications.",
     url: COMPLEX_NUMBERS,
     icon: Radius,
   },

@@ -29,8 +29,9 @@ interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     | "sans"
     | "semibold"
     | "serif"
-    | "thin"
-    | "italic";
+    | "thin";
+  italic?: boolean;
+  isTitle?: boolean;
   children: React.ReactNode;
 }
 
@@ -39,6 +40,8 @@ export const Text: React.FC<TextProps> = ({
   color = "default",
   lineHeight,
   variant,
+  italic = false,
+  isTitle = false,
   className,
   children,
   ...props
@@ -85,8 +88,22 @@ export const Text: React.FC<TextProps> = ({
     serif: "font-serif",
     sans: "font-sans",
     mono: "font-mono",
-    italic: "italic",
   };
+
+  if (isTitle) {
+    return (
+      <p
+        className={cn(
+          "text-5xl text-slate-950 font-semibold",
+          lineHeight && lineHeightMap[lineHeight],
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </p>
+    );
+  }
 
   return (
     <p
@@ -95,6 +112,7 @@ export const Text: React.FC<TextProps> = ({
         colorMap[color],
         lineHeight && lineHeightMap[lineHeight],
         variant && variantMap[variant],
+        italic && "italic",
         className
       )}
       {...props}
