@@ -1,2 +1,2 @@
 export const HOME = "mymathsim/";
-export const COMPLEX_NUMBERS = `${HOME}/complex-numbers`;
+export const COMPLEX_NUMBERS = "/complex-numbers";

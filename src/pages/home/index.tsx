@@ -6,6 +6,7 @@ import { Row } from "@/components/personal/row";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Text } from "../../components/personal/text";
+import { HOME } from "@/paths";
 
 export const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -28,7 +29,7 @@ export const Home: React.FC = () => {
         display="flex"
       >
         {websiteItems
-          .filter((item) => item.url !== "/")
+          .filter((item) => item.url !== HOME)
           .map((item, i) => (
             <Motion
               as={AppCard}
