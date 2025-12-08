@@ -273,7 +273,7 @@ export const ComplexNumberSolver: React.FC = () => {
         rho={polar.rho === "" ? 0 : Number(polar.rho)}
         theta={polar.theta === "" ? 0 : Number(polar.theta)}
         extraPoints={resultPoints}
-        className="w-2xl"
+        className="w-xs sm:w-2xl"
       />
     </Row>
   );
