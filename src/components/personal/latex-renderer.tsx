@@ -39,6 +39,8 @@ const LatexRenderer: React.FC<LatexRendererProps> = ({
 
       blocks.forEach((block) => {
         const el = document.createElement("div");
+        el.className =
+          "text-[0.85rem] sm:text-base md:text-lg overflow-x-auto max-w-full";
         containerRef.current!.appendChild(el);
 
         const isMathBlock =
@@ -52,11 +54,16 @@ const LatexRenderer: React.FC<LatexRendererProps> = ({
         const cleanBlock = block.replace(/^\\\[|\\\]$/g, "");
 
         renderBlock(cleanBlock, el, isMathBlock);
+
+        const katexEl = el.querySelector(".katex") as HTMLElement | null;
+        if (katexEl) {
+          katexEl.style.fontSize = "1em";
+        }
       });
     }
   }, [latex, displayMode]);
 
-  return <div ref={containerRef} />;
+  return <div ref={containerRef} className="overflow-x-auto max-w-full" />;
 };
 
 export default LatexRenderer;

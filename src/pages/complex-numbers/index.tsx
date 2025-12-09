@@ -168,7 +168,7 @@ export const ComplexNumberSolver: React.FC = () => {
   return (
     <Container>
       <Row justify="center">
-        <Container gap={4} hasBackground className="max-w-1/2">
+        <Container gap={4} hasBackground className="xl:max-w-1/2">
           <Text isTitle>{t("The problem")}</Text>
           <Text lineHeight="loose">{t("complex-numbers-problem-1")}</Text>
           <LatexRenderer latex={rotationMatrix} />
