@@ -32,6 +32,7 @@ interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
     | "thin";
   italic?: boolean;
   isTitle?: boolean;
+  isSubTitle?: boolean;
   children: React.ReactNode;
 }
 
@@ -42,6 +43,7 @@ export const Text: React.FC<TextProps> = ({
   variant,
   italic = false,
   isTitle = false,
+  isSubTitle = false,
   className,
   children,
   ...props
@@ -95,6 +97,21 @@ export const Text: React.FC<TextProps> = ({
       <p
         className={cn(
           "text-5xl text-slate-950 font-semibold",
+          lineHeight && lineHeightMap[lineHeight],
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </p>
+    );
+  }
+
+  if (isSubTitle) {
+    return (
+      <p
+        className={cn(
+          "text-2xl text-slate-950 font-semibold",
           lineHeight && lineHeightMap[lineHeight],
           className
         )}

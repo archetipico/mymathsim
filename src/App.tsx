@@ -1,11 +1,12 @@
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { BrowserRouter, Route, Routes } from "react-router";
-import { ComplexNumberSolver } from "./pages/complex-numbers";
 import { Layout } from "./components/personal/layout";
 import "./i18n";
-import { COMPLEX_NUMBERS, HOME } from "./paths";
+import { Fourier } from "./pages/complex-numbers/fourier";
+import { ComplexNumberSolver } from "./pages/complex-numbers/introduction";
 import { Home } from "./pages/home";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { COMPLEX_NUMBERS, COMPLEX_NUMBERS_FOURIER, HOME } from "./paths";
 
 function App() {
   const { i18n } = useTranslation();
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path={HOME} element={<Home />} />
           <Route path={COMPLEX_NUMBERS} element={<ComplexNumberSolver />} />
+          <Route path={COMPLEX_NUMBERS_FOURIER} element={<Fourier />} />
         </Routes>
       </Layout>
     </BrowserRouter>

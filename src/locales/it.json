@@ -8,6 +8,7 @@
   "Im": "Im",
   "Polar Form": "Forma Polare",
   "rho": "ρ",
+  "omega": "ω",
   "Theta": "θ",
   "Apply Operation": "Applica Operazione",
   "Operation": "Operazione",
@@ -20,8 +21,16 @@
   "Interactive visualizations for mathematical concepts": "Visualizzazioni interattive per concetti matematici",
   "Introduction to complex numbers and their applications.": "Introduzione ai numeri complessi e loro applicazioni.",
   "The problem": "Il problema",
+  "Example": "Esempio",
   "Playground": "Mettiti in gioco",
   "complex-numbers-problem-1": "Sei un ingegnere e sei stato incaricato dalla AstroSatellites & Co. per lo studio di un'antenna alta 2m che deve ruotare per puntare sempre allo stesso satellite. Tra i vari calcoli che devi effettuare, sei giustamente interessato a sapere la posizione finale dell'antenna dopo una determinata rotazione. Ci viene subito in mente di imbarcarci nei nostri calcoli con la matrice di rotazione seguente:",
   "complex-numbers-problem-2": "Funziona, ma se ci viene richiesto di aggiungere inclinazioni o altri assi di rotazione il lavoro diventa un'impresa più complessa. Dunque troviamo una soluzione molto più semplice e immediata: i numeri complessi ci permettono di identificare quanto un punto si trova spostato sull'asse delle X (parte reale) e sull'asse delle Y (parte immaginaria), ma anche di sapere la lunghezza di un determinato vettore (ρ) e il suo angolo di rotazione (θ). Quindi pensiamo alla nostra antenna, vista dall'alto, come il numero complesso:",
-  "complex-numbers-problem-3": "Fatto questo, siamo ora in grado di calcolare tutte le rotazioni note e possiamo considerare il lavoro svolto con successo!"
+  "complex-numbers-problem-3": "Fatto questo, siamo ora in grado di calcolare tutte le rotazioni note e possiamo considerare il lavoro svolto con successo!",
+  "complex-numbers-fourier-problem-1": "Perfetto! L'antenna riceve i segnali satellitari correttamente, tuttavia il segnale ricevuto non è una semplice onda, bensì un miscuglio di interferenze e picchi e dunque, incomprensibile.",
+  "complex-numbers-fourier-problem-2": "Rifletti a lungo e ti viene in mente che un'onda non è altro che un vettore che per un lasso di tempo t rotea attorno a un centro formando un cerchio. Considerando un'ampiezza d'onda A e una pulsazione angolare ω (2πf), la nostra onda può essere rappresentata da un numero complesso tramite la notazione:",
+  "complex-numbers-fourier-problem-3": "Dunque la nostra onda imprecisa, siccome è un insieme di onde precise, rappresentabili come vettori distinti che roteano a velocità distinte attorno allo stesso centro, può a sua volta essere interpretata come la somma di tutte queste onde, precise e distinte, rappresentabili singolarmente come numeri complessi, e quindi:",
+  "complex-numbers-fourier-problem-4": "Ora che sappiamo che il segnale ricevuto è la somma di molte onde elementari, possiamo finalmente isolarne una specifica. Il procedimento è semplice: confrontiamo il segnale con una rotazione complessa che gira esattamente alla frequenza che ci interessa. Se quella frequenza è davvero presente nel segnale, le due rotazioni si allineano e il risultato dell'integrazione risulta elevato (ossia vicino al valore dell'ampiezza). Se non è presente, invece, le rotazioni si compensano tra loro e il contributo si annulla. In questo modo estraiamo solo la componente desiderata, separandola da tutto il resto.",
+  "complex-numbers-fourier-problem-5": "Consideriamo un segnale ricevuto dall'antenna composto da due onde: una a frequenza -5 e ampiezza 3, e una seconda a frequenza 12 e ampiezza 0.5. Vogliamo verificare se la frequenza -5 è presente nel segnale e con quale intensità. Per farlo, moltiplichiamo il segnale per una rotazione complessa alla frequenza -5 e integriamo nel tempo.",
+  "complex-numbers-fourier-problem-6": "Tramite integrazione otteniamo i valori dei moduli delle componenti: C(-5) ≈ 3 indica che la frequenza -5 è presente e dominante, C(12) ≈ 0.5 mostra che la frequenza 12 è presente ma più debole, e per tutte le altre frequenze C(ω) ≈ 0.",
+  "Add": "Aggiungi"
 }

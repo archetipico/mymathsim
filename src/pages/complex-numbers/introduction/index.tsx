@@ -1,15 +1,17 @@
+import { FooterPagination } from "@/components/personal/footer-pagination";
 import LatexRenderer from "@/components/personal/latex-renderer";
 import { complex } from "mathjs";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Col } from "../../components/personal/col";
-import { Container } from "../../components/personal/container";
-import { Data } from "../../components/personal/data";
-import { Row } from "../../components/personal/row";
-import { Selector } from "../../components/personal/selector";
-import { Text } from "../../components/personal/text";
-import { clamp, round } from "../../utils";
+import { Col } from "../../../components/personal/col";
+import { Container } from "../../../components/personal/container";
+import { Data } from "../../../components/personal/data";
+import { Row } from "../../../components/personal/row";
+import { Selector } from "../../../components/personal/selector";
+import { Text } from "../../../components/personal/text";
+import { clamp, round } from "../../../utils";
 import { PolarComplexChart } from "./argandGaussChart";
+import { COMPLEX_NUMBERS_FOURIER } from "@/paths";
 
 type RectForm = { re: string; im: string };
 type PolarForm = { rho: string; theta: string };
@@ -320,6 +322,8 @@ export const ComplexNumberSolver: React.FC = () => {
           className="w-xs sm:w-2xl"
         />
       </Row>
+
+      <FooterPagination isFirst nextPath={COMPLEX_NUMBERS_FOURIER} />
     </Container>
   );
 };
