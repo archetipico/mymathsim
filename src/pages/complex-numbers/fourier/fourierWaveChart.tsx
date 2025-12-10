@@ -68,7 +68,7 @@ export const FourierEpicircle: React.FC<FourierEpicircleProps> = ({
           y += c.rho * Math.sin(c.omega * t);
         });
 
-        const MAX_POINTS = 1000;
+        const MAX_POINTS = 2000;
 
         setWavePoints((prev) => pushCircular(prev, { x: t, y }, MAX_POINTS));
 
@@ -110,12 +110,20 @@ export const FourierEpicircle: React.FC<FourierEpicircleProps> = ({
       .attr("flood-color", "#333")
       .attr("flood-opacity", 0.3);
 
-    const circleMargin = 60;
     const centerX = leftWidth / 2;
     const centerY = height / 2;
 
-    const maxR = components.reduce((s, c) => s + c.rho, 0);
-    const scaleLeft = (leftWidth * 0.4 - circleMargin) / maxR;
+    const maxR = Math.max(...components.map((c) => c.rho)); // cerchio più grande
+    const totalRho = components.reduce((s, c) => s + c.rho, 0);
+
+    const marginPercent = 0.05; // 5% di margine
+    const usableWidth = leftWidth * (1 - 2 * marginPercent);
+    const usableHeight = height * 0.9;
+
+    const scaleLeft = Math.min(usableWidth, usableHeight) / (2 * totalRho);
+
+    const scaleVertical = usableHeight / (2 * maxR);
+    const finalScale = Math.min(scaleLeft, scaleVertical);
     const maxY = components.reduce((s, c) => s + Math.abs(c.rho), 0);
     const marginLeft = 50;
     const marginRight = 20;
@@ -133,7 +141,7 @@ export const FourierEpicircle: React.FC<FourierEpicircleProps> = ({
     let x = centerX;
     let y = centerY;
     components.forEach((c) => {
-      const r = c.rho * scaleLeft;
+      const r = c.rho * finalScale;
       const newX = x + r * Math.cos(c.omega * time);
       const newY = y + r * Math.sin(c.omega * time);
 
@@ -176,8 +184,8 @@ export const FourierEpicircle: React.FC<FourierEpicircleProps> = ({
         trail
           .map(
             (p, i) =>
-              `${i === 0 ? "M" : "L"} ${centerX + p.x * scaleLeft} ${
-                centerY + p.y * scaleLeft
+              `${i === 0 ? "M" : "L"} ${centerX + p.x * finalScale} ${
+                centerY + p.y * finalScale
               }`
           )
           .join(" ")

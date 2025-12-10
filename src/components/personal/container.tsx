@@ -71,7 +71,7 @@ export const Container: React.FC<ContainerProps> = ({
     return (
       <div
         className={cn(
-          "grid px-6 py-4 rounded-2xl w-full",
+          "grid px-6 py-4 rounded-2xl w-full mx-auto",
           hasBackground ? "shadow bg-white" : "",
           colMap[cols],
           gapMap[gap],

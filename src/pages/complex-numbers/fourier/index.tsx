@@ -9,6 +9,8 @@ import { t } from "i18next";
 import { Trash } from "lucide-react";
 import { useState } from "react";
 import { FourierEpicircle } from "./fourierWaveChart";
+import { FooterPagination } from "@/components/personal/footer-pagination";
+import { COMPLEX_NUMBERS } from "@/paths";
 
 interface ComponentInput {
   rho: number;
@@ -102,14 +104,15 @@ export const Fourier: React.FC = () => {
         <Text isTitle>{t("Playground")}</Text>
       </Row>
 
-      <Col gap={4} justify="center">
+      <Col gap={2} align="middle">
         {components.map((c, i) => (
           <Container
             key={i}
             cols={3}
-            gap={2}
             hasBackground
             className="xl:max-w-1/2"
+            justify="center"
+            align="middle"
           >
             <Col>
               <Data
@@ -119,6 +122,7 @@ export const Fourier: React.FC = () => {
                 onChange={(e) => handleChange(i, "rho", e.target.value)}
                 label={t("rho")}
                 min={0}
+                max={100}
                 step={0.1}
               />
             </Col>
@@ -129,6 +133,7 @@ export const Fourier: React.FC = () => {
                 value={c.omega}
                 onChange={(e) => handleChange(i, "omega", e.target.value)}
                 label={t("omega")}
+                max={100}
                 step={0.1}
               />
             </Col>
@@ -152,12 +157,18 @@ export const Fourier: React.FC = () => {
           </Container>
         ))}
 
-        <Button onClick={addComponent} disabled={components.length >= 5}>
+        <Button
+          onClick={addComponent}
+          disabled={components.length >= 5}
+          className="xl:max-w-1/2"
+        >
           {t("Add")}
         </Button>
       </Col>
 
       <FourierEpicircle components={components} className="w-full h-96" />
+
+      <FooterPagination isLast prevPath={COMPLEX_NUMBERS} />
     </Container>
   );
 };
